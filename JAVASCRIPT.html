@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Example – CET138</title>
+    <style>
+        /* Clean base styles so the page is readable without any framework */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #2E75B6;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main { max-width: 800px; margin: 30px auto; padding: 0 16px; }
+
+        /* ── Demo Box ────────────────────────────────────────────── */
+        .demo {
+            background: white;
+            border: 1px solid #dce1e7;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+        }
+
+        .demo h2 { color: #2E75B6; margin-bottom: 12px; }
+        .demo p  { margin-bottom: 10px; }
+
+        /* ── Generic form controls ───────────────────────────────── */
+        input[type="text"],
+        input[type="number"],
+        select {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            margin-right: 6px;
+        }
+
+        button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 4px 2px;
+        }
+
+        .btn-blue   { background: #2E75B6; color: white; }
+        .btn-green  { background: #27ae60; color: white; }
+        .btn-red    { background: #e74c3c; color: white; }
+        .btn-grey   { background: #95a5a6; color: white; }
+
+        /* ── Output display ──────────────────────────────────────── */
+        .output {
+            margin-top: 14px;
+            padding: 12px 16px;
+            background: #eaf3fb;
+            border-left: 4px solid #2E75B6;
+            border-radius: 0 6px 6px 0;
+            min-height: 36px;
+            font-weight: bold;
+            color: #1a4f7a;
+        }
+
+        /* ── Counter specific ────────────────────────────────────── */
+        #counterDisplay {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #2E75B6;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* ── To-Do list ──────────────────────────────────────────── */
+        #todoList {
+            list-style: none;
+            margin-top: 14px;
+        }
+
+        #todoList li {
+            display: flex;
+            align-items: center;
+            padding: 8px 10px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        #todoList li:hover { background: #f0f7fd; }
+
+        #todoList li.done { text-decoration: line-through; color: #999; }
+
+        #todoList li::before {
+            content: "☐ ";
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+
+        #todoList li.done::before { content: "☑ "; color: #27ae60; }
+
+        /* ── Colour changer ──────────────────────────────────────── */
+        #colourBox {
+            width: 100%;
+            height: 80px;
+            border-radius: 8px;
+            background: #2E75B6;
+            margin-top: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: background 0.4s ease;
+        }
+
+        footer {
+            background: #1F4E79;
+            color: #ccd6f6;
+            text-align: center;
+            padding: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>JavaScript Example Page</h1>
+    <p>Variables · Functions · DOM Manipulation · Events · Conditions · Loops</p>
+</header>
+
+<main>
+
+    <!-- ==============================================================
+         DEMO 1 – VARIABLES & DOM MANIPULATION
+         Shows: declaring variables with const/let, reading input values,
+         updating element text with textContent
+    ============================================================== -->
+    <div class="demo">
+        <h2>1. Variables &amp; DOM Manipulation</h2>
+        <p>
+            Type your name and click the button.
+            JavaScript reads the input value and updates the greeting below.
+        </p>
+
+        <input type="text" id="nameInput" placeholder="Enter your name">
+        <button class="btn-blue" onclick="showGreeting()">Greet Me</button>
+
+        <div class="output" id="greetingOutput">Your greeting will appear here.</div>
+    </div>
+
+    <!-- ==============================================================
+         DEMO 2 – FUNCTIONS & CONDITIONAL LOGIC
+         Shows: a named function, if/else if/else, string to number
+         conversion with Number(), comparison operators
+    ============================================================== -->
+    <div class="demo">
+        <h2>2. Functions &amp; Conditional Logic</h2>
+        <p>Enter a number (0–100) and get a grade. JavaScript checks
+           the value with <strong>if / else if / else</strong>.</p>
+
+        <input type="number" id="scoreInput" placeholder="e.g. 75" min="0" max="100">
+        <button class="btn-blue" onclick="getGrade()">Get Grade</button>
+
+        <div class="output" id="gradeOutput">Your grade will appear here.</div>
+    </div>
+
+    <!-- ==============================================================
+         DEMO 3 – EVENT LISTENERS & COUNTER
+         Shows: addEventListener(), increment/decrement with let,
+         conditional guard to prevent negative count
+    ============================================================== -->
+    <div class="demo">
+        <h2>3. Event Listeners &amp; Counter</h2>
+        <p>
+            Buttons are wired with <strong>addEventListener()</strong> instead
+            of onclick attributes. This is the preferred, modern approach.
+        </p>
+
+        <div id="counterDisplay">0</div>
+
+        <div style="text-align:center; margin-top:10px;">
+            <button class="btn-red"   id="decrementBtn">− Decrease</button>
+            <button class="btn-grey"  id="resetBtn">↺ Reset</button>
+            <button class="btn-green" id="incrementBtn">+ Increase</button>
+        </div>
+
+        <div class="output" id="counterMessage">Press a button to start.</div>
+    </div>
+
+    <!-- ==============================================================
+         DEMO 4 – ARRAYS & LOOPS
+         Shows: declaring an array with [], .push(), .length,
+         a for...of loop, building an HTML string, innerHTML
+    ============================================================== -->
+    <div class="demo">
+        <h2>4. Arrays &amp; Loops</h2>
+        <p>
+            JavaScript stores multiple values in an <strong>array</strong>.
+            A <strong>loop</strong> processes each item automatically.
+        </p>
+
+        <input type="text" id="fruitInput" placeholder="e.g. Mango">
+        <button class="btn-blue" onclick="addFruit()">Add to List</button>
+        <button class="btn-grey" onclick="showFruits()">Show All</button>
+
+        <div class="output" id="fruitOutput">Your list will appear here.</div>
+    </div>
+
+    <!-- ==============================================================
+         DEMO 5 – TO-DO LIST (Combined Concepts)
+         Shows: DOM createElement, appendChild, classList.toggle,
+         a keypress event (Enter key), textContent, template literals
+    ============================================================== -->
+    <div class="demo">
+        <h2>5. To-Do List (Full Example)</h2>
+        <p>
+            Type a task and press <strong>Add</strong> or hit <strong>Enter</strong>.
+            Click any task to toggle it done / undone.
+        </p>
+
+        <input type="text" id="todoInput" placeholder="Enter a task...">
+        <button class="btn-green" id="addTodoBtn">Add Task</button>
+        <button class="btn-red"   id="clearDoneBtn">Clear Done</button>
+
+        <div style="margin-top:8px; font-size:0.9rem; color:#666;">
+            Tasks added: <span id="taskCount" style="font-weight:bold;">0</span>
+        </div>
+
+        <ul id="todoList"></ul>
+    </div>
+
+    <!-- ==============================================================
+         DEMO 6 – setTimeout & setInterval (Timing Functions)
+         Shows: setTimeout (runs once after a delay),
+                setInterval (runs repeatedly), clearInterval
+    ============================================================== -->
+    <div class="demo">
+        <h2>6. Colour Changer (setTimeout &amp; setInterval)</h2>
+        <p>
+            Click <strong>Start</strong> to change the colour every second
+            using <code>setInterval</code>. Click <strong>Stop</strong> to
+            cancel with <code>clearInterval</code>.
+        </p>
+
+        <button class="btn-green" id="startColourBtn">▶ Start</button>
+        <button class="btn-red"   id="stopColourBtn" disabled>■ Stop</button>
+
+        <div id="colourBox">Colour will change here</div>
+    </div>
+
+</main>
+
+<footer>
+    <p>CET138 Assignment &copy; 2025 &mdash; JavaScript Example</p>
+</footer>
+
+
+<!-- ==================================================================
+     ALL JAVASCRIPT  –  placed at the bottom so HTML loads first,
+     then the script runs. Alternatively use defer on a <script src>.
+================================================================== -->
+<script>
+
+// ====================================================================
+// DEMO 1 – Variables & DOM Manipulation
+// ====================================================================
+
+function showGreeting() {
+    // const: declares a variable that will not be reassigned
+    // document.getElementById() returns the element with that id
+    const nameInput = document.getElementById('nameInput');
+    const output    = document.getElementById('greetingOutput');
+
+    // .value reads the current text inside an <input>
+    // .trim() removes any extra whitespace from the start and end
+    const name = nameInput.value.trim();
+
+    // Conditional: check the input isn't empty before using it
+    if (name === '') {
+        output.textContent = 'Please type your name first!';
+        return; // Exit the function early
+    }
+
+    // Template literal: back-ticks allow variables inside ${  }
+    output.textContent = `Hello, ${name}! Welcome to the JavaScript demo.`;
+}
+
+
+// ====================================================================
+// DEMO 2 – Functions & Conditional Logic
+// ====================================================================
+
+function getGrade() {
+    const scoreInput = document.getElementById('scoreInput');
+    const output     = document.getElementById('gradeOutput');
+
+    // Number() converts the string value into a numeric type
+    const score = Number(scoreInput.value);
+
+    // Validate: check the score is a valid number in range
+    if (isNaN(score) || score < 0 || score > 100) {
+        output.textContent = 'Please enter a number between 0 and 100.';
+        return;
+    }
+
+    // if / else if / else chain for decision-making
+    let grade;
+    if (score >= 70) {
+        grade = 'A – Distinction';
+    } else if (score >= 60) {
+        grade = 'B – Merit';
+    } else if (score >= 50) {
+        grade = 'C – Pass';
+    } else if (score >= 40) {
+        grade = 'D – Marginal Pass';
+    } else {
+        grade = 'F – Fail';
+    }
+
+    output.textContent = `Score: ${score}/100  →  Grade: ${grade}`;
+}
+
+
+// ====================================================================
+// DEMO 3 – Event Listeners & Counter
+// ====================================================================
+
+// let allows the value to change (unlike const)
+let count = 0;
+
+// Helper function: updates the display and message
+function updateCounter(message) {
+    document.getElementById('counterDisplay').textContent = count;
+    document.getElementById('counterMessage').textContent = message;
+}
+
+// addEventListener(event, callback):
+// Runs the callback function when the named event fires on the element.
+document.getElementById('incrementBtn').addEventListener('click', function() {
+    count++;          // Shorthand for count = count + 1
+    updateCounter('You increased the counter!');
+});
+
+document.getElementById('decrementBtn').addEventListener('click', function() {
+    // Guard: prevent the counter going below zero
+    if (count === 0) {
+        updateCounter('The counter is already at 0.');
+        return;
+    }
+    count--;          // Shorthand for count = count - 1
+    updateCounter('You decreased the counter.');
+});
+
+document.getElementById('resetBtn').addEventListener('click', function() {
+    count = 0;
+    updateCounter('Counter has been reset.');
+});
+
+
+// ====================================================================
+// DEMO 4 – Arrays & Loops
+// ====================================================================
+
+// Array: a variable that holds multiple values in order
+const fruits = ['Apple', 'Banana', 'Cherry'];  // Start with three items
+
+function addFruit() {
+    const input = document.getElementById('fruitInput');
+    const fruit = input.value.trim();
+
+    if (fruit === '') {
+        document.getElementById('fruitOutput').textContent = 'Please enter a fruit name.';
+        return;
+    }
+
+    // .push() adds a new item to the end of the array
+    fruits.push(fruit);
+
+    document.getElementById('fruitOutput').textContent =
+        `"${fruit}" added! The list now has ${fruits.length} item(s). Click Show All.`;
+
+    input.value = ''; // Clear the input
+}
+
+function showFruits() {
+    const output = document.getElementById('fruitOutput');
+
+    if (fruits.length === 0) {
+        output.textContent = 'The list is empty!';
+        return;
+    }
+
+    // Build a string by looping over every item in the array
+    let listText = 'Fruits in the array: ';
+    for (const fruit of fruits) {
+        listText += fruit + '  ';   // Append each fruit followed by spaces
+    }
+
+    output.textContent = listText;
+}
+
+
+// ====================================================================
+// DEMO 5 – To-Do List
+// ====================================================================
+
+let todoCount = 0;   // Tracks total tasks added
+
+function addTodo() {
+    const input      = document.getElementById('todoInput');
+    const taskText   = input.value.trim();
+    const taskCount  = document.getElementById('taskCount');
+    const todoList   = document.getElementById('todoList');
+
+    if (taskText === '') {
+        alert('Please type a task before adding!');
+        return;
+    }
+
+    // Create a new <li> element in memory (not on the page yet)
+    const li = document.createElement('li');
+    li.textContent = taskText;
+
+    // Toggle the 'done' CSS class each time this task is clicked
+    li.addEventListener('click', function() {
+        li.classList.toggle('done');
+    });
+
+    // Append the new <li> to the <ul> on the page
+    todoList.appendChild(li);
+
+    todoCount++;
+    taskCount.textContent = todoCount;  // Update the counter display
+
+    input.value = '';  // Clear the input field
+    input.focus();     // Return focus to the input for fast entry
+}
+
+// Wire the Add button
+document.getElementById('addTodoBtn').addEventListener('click', addTodo);
+
+// Also add a task when the Enter key is pressed in the input
+document.getElementById('todoInput').addEventListener('keypress', function(event) {
+    // event.key gives us the name of the key that was pressed
+    if (event.key === 'Enter') {
+        addTodo();
+    }
+});
+
+// Clear all tasks that have the 'done' class applied
+document.getElementById('clearDoneBtn').addEventListener('click', function() {
+    const done = document.querySelectorAll('#todoList li.done');
+    // .forEach() loops over the NodeList and runs a callback for each item
+    done.forEach(function(li) {
+        li.remove();   // Remove the element from the DOM
+    });
+});
+
+
+// ====================================================================
+// DEMO 6 – Colour Changer (setInterval / clearInterval)
+// ====================================================================
+
+// Array of colour hex codes to cycle through
+const colours    = ['#e74c3c', '#e67e22', '#27ae60', '#2E75B6', '#8e44ad', '#2c3e50'];
+let   colourIndex = 0;
+let   colourTimer = null;   // Will hold the interval ID so we can cancel it
+
+document.getElementById('startColourBtn').addEventListener('click', function() {
+    const box       = document.getElementById('colourBox');
+    const startBtn  = document.getElementById('startColourBtn');
+    const stopBtn   = document.getElementById('stopColourBtn');
+
+    // setInterval(callback, milliseconds): runs the callback every X ms
+    colourTimer = setInterval(function() {
+        const colour = colours[colourIndex];
+        box.style.backgroundColor = colour;   // Change the background colour
+        box.textContent            = colour;   // Show the hex code in the box
+
+        // Advance the index; % (modulo) wraps back to 0 after the last colour
+        colourIndex = (colourIndex + 1) % colours.length;
+    }, 1000); // 1000 milliseconds = 1 second
+
+    // Swap button states
+    startBtn.disabled = true;
+    stopBtn.disabled  = false;
+});
+
+document.getElementById('stopColourBtn').addEventListener('click', function() {
+    // clearInterval cancels the interval using the ID returned by setInterval
+    clearInterval(colourTimer);
+    colourTimer = null;
+
+    const startBtn = document.getElementById('startColourBtn');
+    const stopBtn  = document.getElementById('stopColourBtn');
+    startBtn.disabled = false;
+    stopBtn.disabled  = true;
+
+    document.getElementById('colourBox').textContent = 'Stopped!';
+});
+
+</script>
+
+</body>
+</html>

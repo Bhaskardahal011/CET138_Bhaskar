@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Example – CET138</title>
+
+    <!-- ================================================================
+         BOOTSTRAP CSS  –  loaded from a CDN (Content Delivery Network)
+         No installation required. Just include this <link> tag and
+         Bootstrap's pre-built styles are available.
+    ================================================================ -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+    <!-- A tiny bit of custom CSS to override/extend Bootstrap -->
+    <style>
+        /* Add top padding so content is not hidden behind the fixed navbar */
+        body { padding-top: 70px; }
+
+        /* Make each section have breathing room */
+        section { padding: 40px 0; border-bottom: 1px solid #dee2e6; }
+
+        /* Style for the colour swatches in the utilities demo */
+        .swatch {
+            width: 100%;
+            height: 60px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================================================================
+         1. BOOTSTRAP NAVBAR  (Component)
+         ● navbar          – activates Bootstrap navbar styles
+         ● navbar-expand-lg – collapses to hamburger on screens < lg (992px)
+         ● navbar-dark bg-primary – dark text colour theme on a blue background
+         ● fixed-top       – sticks the nav to the top as you scroll
+    ================================================================ -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+
+            <!-- Brand / logo text on the left -->
+            <a class="navbar-brand fw-bold" href="#">Bootstrap Demo</a>
+
+            <!-- Hamburger button: only visible on small screens.
+                 data-bs-toggle and data-bs-target are Bootstrap JS attributes
+                 that tell it to toggle the element with id="navbarMenu" -->
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#navbarMenu"
+                    aria-controls="navbarMenu" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Collapsible link list – hidden on small screens until burger is clicked -->
+            <div class="collapse navbar-collapse" id="navbarMenu">
+                <!-- ms-auto pushes the links to the right (margin-start: auto) -->
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#grid">Grid</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#cards">Cards</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#buttons">Buttons</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#alerts">Alerts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#utilities">Utilities</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- ================================================================
+         PAGE HERO  –  uses Bootstrap utility classes only
+         ● bg-primary text-white  – blue background, white text
+         ● py-5               – padding top and bottom (size 5 = 3rem)
+         ● text-center        – centres text horizontally
+         ● display-4          – large heading size
+         ● lead               – slightly larger paragraph style
+    ================================================================ -->
+    <div class="bg-primary text-white py-5 text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Bootstrap 5 Demo</h1>
+            <p class="lead">
+                Explore the Grid System, Cards, Buttons, Alerts, and Utility Classes
+                <span class="badge bg-warning text-dark ms-2">CET138</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- ================================================================
+         MAIN CONTENT inside Bootstrap's .container
+         ● .container  – centres content and adds horizontal padding,
+                          max-width changes at each breakpoint (sm/md/lg/xl)
+    ================================================================ -->
+    <div class="container">
+
+        <!-- ============================================================
+             2. BOOTSTRAP GRID SYSTEM  (Core Feature)
+             ● The page is divided into 12 invisible columns
+             ● col-md-4  = occupy 4 of 12 columns on medium+ screens
+             ● col-md-6  = occupy 6 of 12 columns (half width)
+             ● col-12    = full width on all screen sizes
+             ● g-3       = gutter (gap between columns), size 3 = 1rem
+        ============================================================ -->
+        <section id="grid">
+            <h2 class="mb-3">1. The 12-Column Grid System</h2>
+            <p class="text-muted mb-3">
+                Resize the window to see columns stack on small screens.
+            </p>
+
+            <!-- Row with THREE equal columns (4+4+4 = 12) -->
+            <p><strong>Three equal columns (col-md-4 each):</strong></p>
+            <div class="row g-2 mb-3">
+                <div class="col-md-4">
+                    <div class="p-3 bg-primary text-white text-center rounded">col-md-4</div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 bg-primary text-white text-center rounded">col-md-4</div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 bg-primary text-white text-center rounded">col-md-4</div>
+                </div>
+            </div>
+
+            <!-- Row with TWO unequal columns (8+4 = 12) -->
+            <p><strong>Two unequal columns (col-md-8 + col-md-4):</strong></p>
+            <div class="row g-2 mb-3">
+                <div class="col-md-8">
+                    <div class="p-3 bg-success text-white text-center rounded">
+                        col-md-8 (main content)
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 bg-secondary text-white text-center rounded">
+                        col-md-4 (sidebar)
+                    </div>
+                </div>
+            </div>
+
+            <!-- Full-width row -->
+            <p><strong>One full-width column (col-12):</strong></p>
+            <div class="row g-2">
+                <div class="col-12">
+                    <div class="p-3 bg-dark text-white text-center rounded">col-12 (full width)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             3. BOOTSTRAP CARDS  (Component)
+             ● .card          – white box with border and subtle shadow
+             ● .card-header   – coloured top strip
+             ● .card-body     – main content area
+             ● .card-title    – heading inside the card
+             ● .card-text     – paragraph text inside the card
+             ● .h-100         – stretch card to full column height
+        ============================================================ -->
+        <section id="cards">
+            <h2 class="mb-3">2. Cards</h2>
+            <div class="row row-cols-1 row-cols-md-3 g-3">
+
+                <!-- Card 1 -->
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-primary text-white fw-bold">HTML</div>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                HyperText Markup Language
+                                <!-- Badge shows a status indicator -->
+                                <span class="badge bg-success ms-1">Core</span>
+                            </h5>
+                            <p class="card-text">
+                                HTML provides the structure of a web page using
+                                elements and tags.
+                            </p>
+                            <a href="#" class="btn btn-primary btn-sm">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-success text-white fw-bold">CSS</div>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                Cascading Style Sheets
+                                <span class="badge bg-success ms-1">Core</span>
+                            </h5>
+                            <p class="card-text">
+                                CSS controls the visual presentation: colours,
+                                fonts, spacing, and layout.
+                            </p>
+                            <a href="#" class="btn btn-success btn-sm">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="col">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-header bg-warning fw-bold">JavaScript</div>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                JavaScript
+                                <span class="badge bg-warning text-dark ms-1">Core</span>
+                            </h5>
+                            <p class="card-text">
+                                JavaScript adds interactivity and dynamic
+                                behaviour to web pages.
+                            </p>
+                            <a href="#" class="btn btn-warning btn-sm">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================================
+             4. BOOTSTRAP BUTTONS  (Component)
+             ● .btn           – base button style
+             ● .btn-primary   – blue (Bootstrap primary colour)
+             ● .btn-success   – green
+             ● .btn-danger    – red
+             ● .btn-warning   – yellow
+             ● .btn-secondary – grey
+             ● .btn-outline-* – outlined (transparent background) variants
+             ● .btn-sm / .btn-lg – smaller / larger size
+        ============================================================ -->
+        <section id="buttons">
+            <h2 class="mb-3">3. Buttons</h2>
+
+            <p><strong>Solid button variants:</strong></p>
+            <div class="mb-3 d-flex flex-wrap gap-2">
+                <button class="btn btn-primary">Primary</button>
+                <button class="btn btn-secondary">Secondary</button>
+                <button class="btn btn-success">Success</button>
+                <button class="btn btn-danger">Danger</button>
+                <button class="btn btn-warning">Warning</button>
+                <button class="btn btn-info">Info</button>
+                <button class="btn btn-dark">Dark</button>
+            </div>
+
+            <p><strong>Outline button variants:</strong></p>
+            <div class="mb-3 d-flex flex-wrap gap-2">
+                <button class="btn btn-outline-primary">Primary</button>
+                <button class="btn btn-outline-success">Success</button>
+                <button class="btn btn-outline-danger">Danger</button>
+                <button class="btn btn-outline-warning">Warning</button>
+            </div>
+
+            <p><strong>Sizes:</strong></p>
+            <div class="d-flex flex-wrap gap-2 align-items-center">
+                <button class="btn btn-primary btn-lg">Large</button>
+                <button class="btn btn-primary">Default</button>
+                <button class="btn btn-primary btn-sm">Small</button>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             5. BOOTSTRAP ALERTS  (Component)
+             ● .alert .alert-* – coloured message boxes
+             ● .alert-dismissible + data-bs-dismiss="alert" – adds a
+               close button so the user can dismiss the alert
+        ============================================================ -->
+        <section id="alerts">
+            <h2 class="mb-3">4. Alerts</h2>
+
+            <!-- Static alerts (cannot be dismissed) -->
+            <div class="alert alert-primary">
+                <strong>Primary:</strong> This is a primary (blue) alert.
+            </div>
+            <div class="alert alert-success">
+                <strong>Success:</strong> Your portfolio was submitted successfully!
+            </div>
+            <div class="alert alert-danger">
+                <strong>Danger:</strong> Something went wrong. Please try again.
+            </div>
+            <div class="alert alert-warning">
+                <strong>Warning:</strong> Your session will expire in 5 minutes.
+            </div>
+            <div class="alert alert-info">
+                <strong>Info:</strong> This page was built with Bootstrap 5.
+            </div>
+
+            <!-- Dismissible alert – the × button closes it -->
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Dismissible Alert:</strong> Click the × button to close me!
+                <button type="button" class="btn-close"
+                        data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             6. UTILITY CLASSES
+             Bootstrap provides hundreds of utility classes for quick
+             styling without writing custom CSS.
+        ============================================================ -->
+        <section id="utilities">
+            <h2 class="mb-3">5. Common Utility Classes</h2>
+
+            <!-- Background colours -->
+            <p><strong>Background colours (bg-*):</strong></p>
+            <div class="row g-2 mb-3">
+                <div class="col-6 col-md-3">
+                    <div class="swatch bg-primary text-white">bg-primary</div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="swatch bg-success text-white">bg-success</div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="swatch bg-danger text-white">bg-danger</div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="swatch bg-warning">bg-warning</div>
+                </div>
+            </div>
+
+            <!-- Spacing utilities -->
+            <p><strong>Spacing (m-* margin, p-* padding):</strong></p>
+            <div class="d-flex flex-wrap gap-2 mb-3">
+                <div class="bg-light border p-1">p-1</div>
+                <div class="bg-light border p-2">p-2</div>
+                <div class="bg-light border p-3">p-3</div>
+                <div class="bg-light border p-4">p-4</div>
+                <div class="bg-light border p-5">p-5</div>
+            </div>
+
+            <!-- Text utilities -->
+            <p><strong>Text alignment and weight:</strong></p>
+            <p class="text-start">text-start (left)</p>
+            <p class="text-center">text-center (centre)</p>
+            <p class="text-end">text-end (right)</p>
+            <p class="fw-bold">fw-bold (bold)</p>
+            <p class="fst-italic">fst-italic (italic)</p>
+            <p class="text-muted">text-muted (grey)</p>
+            <p class="text-primary">text-primary (blue)</p>
+            <p class="text-danger">text-danger (red)</p>
+        </section>
+
+    </div><!-- end .container -->
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 mt-4">
+        <p class="mb-0">CET138 Assignment &copy; 2025 &mdash; Bootstrap Example</p>
+    </footer>
+
+    <!-- ================================================================
+         BOOTSTRAP JS  –  must be included for interactive components
+         (navbar toggle, dismissible alerts, modals, etc.) to work.
+         The "bundle" version includes Popper.js which Bootstrap needs.
+    ================================================================ -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+</body>
+</html>

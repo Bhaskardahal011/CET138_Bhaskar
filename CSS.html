@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Example – CET138</title>
+
+    <!-- ================================================================
+         CSS EXAMPLE  –  All styles are in this <style> block.
+         In a real project you would save these in a separate file,
+         e.g.  styles.css  and link it with:
+         <link rel="stylesheet" href="styles.css">
+    ================================================================ -->
+    <style>
+
+        /* ==============================================================
+           1. GLOBAL RESET
+           The browser applies its own default margins/padding to every
+           element. We remove them so our design starts from a clean slate.
+        ============================================================== */
+        * {
+            margin: 0;           /* Remove default outer spacing */
+            padding: 0;          /* Remove default inner spacing */
+            box-sizing: border-box; /* Padding/border are included in the
+                                       element's declared width/height */
+        }
+
+        /* ==============================================================
+           2. BODY – Base typography and background
+        ============================================================== */
+        body {
+            font-family: Arial, Helvetica, sans-serif;  /* Font stack */
+            font-size: 16px;         /* Base font size */
+            line-height: 1.6;        /* Spacing between lines of text */
+            background-color: #f0f2f5;  /* Light grey page background */
+            color: #333333;          /* Default text colour (dark grey) */
+        }
+
+        /* ==============================================================
+           3. HEADER – Background colour and text alignment
+        ============================================================== */
+        header {
+            background-color: #2E75B6;  /* Blue background */
+            color: white;               /* White text on blue */
+            padding: 30px 20px;         /* 30px top/bottom, 20px left/right */
+            text-align: center;         /* Centre the heading text */
+        }
+
+        header h1 {
+            font-size: 2rem;     /* 2x the root font size = 32px */
+            letter-spacing: 1px; /* Slightly spread the letters */
+        }
+
+        header p {
+            margin-top: 8px;
+            font-size: 1rem;
+            opacity: 0.85;       /* Slightly transparent to soften */
+        }
+
+        /* ==============================================================
+           4. NAVIGATION BAR – Flexbox layout
+           Flexbox makes it easy to lay items out in a row or column
+           and control their alignment and spacing.
+        ============================================================== */
+        nav {
+            display: flex;           /* Enable Flexbox on this container */
+            justify-content: center; /* Centre children horizontally */
+            gap: 10px;               /* Space between each nav item */
+            background-color: #1F4E79; /* Darker blue than the header */
+            padding: 12px;
+        }
+
+        /* Style every <a> tag inside the nav */
+        nav a {
+            color: white;
+            text-decoration: none;   /* Remove the default underline */
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 4px;      /* Slightly rounded corners */
+            transition: background-color 0.3s ease; /* Smooth colour fade */
+        }
+
+        /* :hover is a PSEUDO-CLASS – applies when the mouse is over the element */
+        nav a:hover {
+            background-color: #2E75B6; /* Change background on mouse-over */
+        }
+
+        /* ==============================================================
+           5. MAIN CONTENT WRAPPER
+        ============================================================== */
+        main {
+            max-width: 900px;    /* Never wider than 900px */
+            margin: 30px auto;   /* auto left/right centres the block */
+            padding: 0 16px;     /* Breathing room on small screens */
+        }
+
+        /* ==============================================================
+           6. CARDS – The CSS Box Model in action
+           Every element is a box with: content | padding | border | margin
+        ============================================================== */
+        .card {
+            background-color: white;
+            border: 1px solid #dce1e7;  /* Thin light-grey border */
+            border-radius: 8px;         /* Rounded corners */
+            padding: 24px;              /* Space INSIDE the border */
+            margin-bottom: 24px;        /* Space OUTSIDE the border */
+            /* box-shadow: offset-x offset-y blur spread colour */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h2 {
+            color: #2E75B6;
+            margin-bottom: 12px;
+            font-size: 1.4rem;
+        }
+
+        /* ==============================================================
+           7. COLOUR DEMONSTRATION
+        ============================================================== */
+        .colour-grid {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;   /* Wrap to next line if no space */
+            margin-top: 12px;
+        }
+
+        .colour-box {
+            width: 110px;
+            height: 70px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;     /* Vertically centre the text */
+            justify-content: center; /* Horizontally centre the text */
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        /* Four ways to define colours in CSS */
+        .colour-name  { background-color: tomato; }           /* Named colour */
+        .colour-hex   { background-color: #2E75B6; }          /* Hex code */
+        .colour-rgb   { background-color: rgb(46, 204, 113); } /* RGB values */
+        .colour-hsl   { background-color: hsl(270, 60%, 50%); } /* HSL values */
+
+        /* ==============================================================
+           8. TYPOGRAPHY DEMONSTRATION
+        ============================================================== */
+        .type-demo p { margin-top: 10px; }
+
+        .large    { font-size: 1.5rem; }
+        .small    { font-size: 0.85rem; }
+        .bold     { font-weight: bold; }
+        .italic   { font-style: italic; }
+        .underline{ text-decoration: underline; }
+        .spaced   { letter-spacing: 3px; }
+        .muted    { color: #888888; }
+
+        /* ==============================================================
+           9. BUTTON with :hover and :active states
+        ============================================================== */
+        .btn {
+            display: inline-block;
+            padding: 10px 22px;
+            background-color: #2E75B6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.25s, transform 0.1s;
+            margin-top: 12px;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: #1F4E79; /* Darker on hover */
+        }
+
+        .btn:active {
+            transform: scale(0.97); /* Slightly shrink when clicked */
+        }
+
+        /* ==============================================================
+           10. RESPONSIVE DESIGN – Media Query
+           Rules inside @media only apply when the condition is true.
+           Here: "when the viewport is 600px wide or narrower"
+        ============================================================== */
+        @media (max-width: 600px) {
+
+            header h1 { font-size: 1.4rem; }
+
+            nav {
+                flex-direction: column; /* Stack nav links vertically */
+                align-items: center;
+            }
+
+            .colour-grid { justify-content: center; }
+
+            .card { padding: 16px; } /* Reduce card padding on small screens */
+        }
+
+        /* ==============================================================
+           11. FOOTER
+        ============================================================== */
+        footer {
+            background-color: #1F4E79;
+            color: #ccd6f6;
+            text-align: center;
+            padding: 16px;
+            font-size: 0.9rem;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>CSS Example Page</h1>
+        <p>Demonstrating colours, typography, Flexbox, the box model, and media queries</p>
+    </header>
+
+    <nav>
+        <a href="#colours">Colours</a>
+        <a href="#typography">Typography</a>
+        <a href="#boxmodel">Box Model</a>
+        <a href="#buttons">Buttons</a>
+        <a href="#responsive">Responsive</a>
+    </nav>
+
+    <main>
+
+        <!-- Colour Card -->
+        <div class="card" id="colours">
+            <h2>1. Colour Values in CSS</h2>
+            <p>CSS supports four ways to specify colours:</p>
+            <div class="colour-grid">
+                <div class="colour-box colour-name">Named<br>tomato</div>
+                <div class="colour-box colour-hex">Hex<br>#2E75B6</div>
+                <div class="colour-box colour-rgb">RGB<br>rgb(46,204,113)</div>
+                <div class="colour-box colour-hsl">HSL<br>hsl(270,60%,50%)</div>
+            </div>
+        </div>
+
+        <!-- Typography Card -->
+        <div class="card" id="typography">
+            <h2>2. Typography Properties</h2>
+            <div class="type-demo">
+                <p class="large">Large text (font-size: 1.5rem)</p>
+                <p class="small">Small text (font-size: 0.85rem)</p>
+                <p class="bold">Bold text (font-weight: bold)</p>
+                <p class="italic">Italic text (font-style: italic)</p>
+                <p class="underline">Underlined text (text-decoration: underline)</p>
+                <p class="spaced">Spaced letters (letter-spacing: 3px)</p>
+                <p class="muted">Muted text (color: #888888)</p>
+            </div>
+        </div>
+
+        <!-- Box Model Card -->
+        <div class="card" id="boxmodel">
+            <h2>3. The CSS Box Model</h2>
+            <p>
+                Every element is a box. From inside to outside:
+                <strong>content → padding → border → margin</strong>.
+                This card uses:
+            </p>
+            <ul style="margin: 10px 0 0 20px; line-height: 2;">
+                <li><code>padding: 24px</code> – space inside the border</li>
+                <li><code>border: 1px solid #dce1e7</code> – thin grey border</li>
+                <li><code>border-radius: 8px</code> – rounded corners</li>
+                <li><code>margin-bottom: 24px</code> – space below the card</li>
+                <li><code>box-shadow: 0 2px 8px rgba(0,0,0,0.08)</code> – subtle shadow</li>
+            </ul>
+        </div>
+
+        <!-- Buttons Card -->
+        <div class="card" id="buttons">
+            <h2>4. Buttons with :hover and :active</h2>
+            <p>Hover over or click the button to see the CSS pseudo-class effects.</p>
+            <a href="#" class="btn">Hover or Click Me</a>
+        </div>
+
+        <!-- Responsive Card -->
+        <div class="card" id="responsive">
+            <h2>5. Responsive Design (Media Query)</h2>
+            <p>
+                Resize this browser window to under <strong>600px</strong> wide
+                to see the media query in action. The navigation will stack vertically
+                and the card padding will reduce.
+            </p>
+            <p style="margin-top:10px; color: #888;">
+                The rule used is: <code>@media (max-width: 600px) { ... }</code>
+            </p>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>CET138 Assignment &copy; 2025 &mdash; CSS Example</p>
+    </footer>
+
+</body>
+</html>

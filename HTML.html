@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<!-- DOCTYPE tells the browser this is an HTML5 document -->
+<html lang="en">
+
+<head>
+    <!-- The head section contains metadata, not visible content -->
+    <meta charset="UTF-8">
+    <!-- Viewport meta tag makes the page scale properly on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Example – CET138</title>
+
+    <!-- A small amount of inline CSS just to make the page readable -->
+    <style>
+        body        { font-family: Arial, sans-serif; padding: 20px; background: #f4f4f4; }
+        header      { background: #2E75B6; color: white; padding: 20px; }
+        nav a       { color: white; margin-right: 15px; text-decoration: none; }
+        section     { background: white; margin: 20px 0; padding: 20px; border-radius: 6px; }
+        footer      { background: #333; color: white; text-align: center; padding: 12px; }
+        table       { border-collapse: collapse; width: 100%; }
+        th, td      { border: 1px solid #ccc; padding: 10px; text-align: left; }
+        th          { background: #2E75B6; color: white; }
+        label       { display: block; margin-top: 10px; font-weight: bold; }
+        input, textarea { width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #ccc;
+                          border-radius: 4px; box-sizing: border-box; }
+        button      { margin-top: 12px; padding: 10px 20px; background: #2E75B6;
+                      color: white; border: none; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===================================================
+         <header> is a semantic element meaning "top of the page or section"
+    ================================================================== -->
+    <header>
+        <h1>My HTML Example Page</h1>
+
+        <!-- <nav> is a semantic element for navigation links -->
+        <nav>
+            <!-- # links scroll to the id on this page -->
+            <a href="#about">About</a>
+            <a href="#lists">Lists</a>
+            <a href="#table">Table</a>
+            <a href="#images">Images & Links</a>
+            <a href="#form">Contact Form</a>
+        </nav>
+    </header>
+
+    <!-- ===== MAIN CONTENT ============================================
+         <main> is a semantic element for the primary page content
+    ================================================================== -->
+    <main>
+
+        <!-- ===== SECTION 1: About ===================================
+             id="about" lets the nav link <a href="#about"> jump here
+        ============================================================ -->
+        <section id="about">
+            <h2>About This Page</h2>
+
+            <!-- <p> creates a paragraph of text -->
+            <p>
+                This page demonstrates core <strong>HTML</strong> concepts.
+                HTML stands for <em>HyperText Markup Language</em>.
+            </p>
+            <p>
+                <!-- <strong> = bold importance,  <em> = italic emphasis -->
+                HTML uses <strong>tags</strong> (like &lt;p&gt;) to <em>structure</em> content.
+                Tags usually come in pairs: an opening tag and a closing tag.
+            </p>
+        </section>
+
+        <!-- ===== SECTION 2: Lists =================================== -->
+        <section id="lists">
+            <h2>HTML Lists</h2>
+
+            <!-- Unordered list – shows bullet points -->
+            <h3>Unordered List (ul)</h3>
+            <ul>
+                <li>HTML – structures the page</li>
+                <li>CSS – styles the page</li>
+                <li>JavaScript – makes the page interactive</li>
+            </ul>
+
+            <!-- Ordered list – shows numbers -->
+            <h3>Ordered List (ol)</h3>
+            <ol>
+                <li>Write the HTML structure</li>
+                <li>Add CSS styling</li>
+                <li>Add JavaScript interactivity</li>
+            </ol>
+        </section>
+
+        <!-- ===== SECTION 3: Table =================================== -->
+        <section id="table">
+            <h2>HTML Table</h2>
+            <p>Tables organise data into rows and columns.</p>
+
+            <table>
+                <!-- <thead> contains the header row -->
+                <thead>
+                    <tr>
+                        <!-- <th> = table header cell (bold by default) -->
+                        <th>Technology</th>
+                        <th>Role</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <!-- <tbody> contains the data rows -->
+                <tbody>
+                    <tr>
+                        <!-- <td> = table data cell -->
+                        <td>HTML</td>
+                        <td>Structure</td>
+                        <td>Markup Language</td>
+                    </tr>
+                    <tr>
+                        <td>CSS</td>
+                        <td>Presentation</td>
+                        <td>Style Sheet Language</td>
+                    </tr>
+                    <tr>
+                        <td>JavaScript</td>
+                        <td>Behaviour</td>
+                        <td>Programming Language</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ===== SECTION 4: Images & Links ========================== -->
+        <section id="images">
+            <h2>Images and Links</h2>
+
+            <!-- <img> embeds an image
+                 src  = where the image comes from (URL or file path)
+                 alt  = text shown if image cannot load (also for accessibility)
+                 width = display width in pixels -->
+            <img src="https://via.placeholder.com/400x150?text=HTML+Example+Image"
+                 alt="A placeholder image showing the HTML img tag in use"
+                 width="400">
+
+            <p>
+                <!-- <a> creates a hyperlink
+                     href   = the destination URL
+                     target = "_blank" opens link in a new browser tab -->
+                Visit <a href="https://developer.mozilla.org/en-US/docs/Web/HTML"
+                         target="_blank">MDN Web Docs</a>
+                to learn more about HTML.
+            </p>
+        </section>
+
+        <!-- ===== SECTION 5: Form ==================================== -->
+        <section id="form">
+            <h2>Contact Form</h2>
+            <p>HTML forms collect input from the user.</p>
+
+            <!-- <form> wraps all form elements
+                 action = where to send the data (# means stay on this page)
+                 method = "post" sends data securely in the request body -->
+            <form action="#" method="post">
+
+                <!-- <label> describes what the input is for
+                     for="name" links the label to the input with id="name" -->
+                <label for="name">Your Name:</label>
+                <!-- <input type="text"> is a single-line text field -->
+                <input type="text" id="name" name="name"
+                       placeholder="e.g. Jane Smith" required>
+
+                <label for="email">Email Address:</label>
+                <!-- type="email" validates that the value looks like an email -->
+                <input type="email" id="email" name="email"
+                       placeholder="e.g. jane@example.com" required>
+
+                <label for="message">Message:</label>
+                <!-- <textarea> is a multi-line text area
+                     rows = number of visible lines -->
+                <textarea id="message" name="message" rows="4"
+                          placeholder="Type your message here..."></textarea>
+
+                <!-- <button type="submit"> sends the form data -->
+                <button type="submit">Send Message</button>
+
+            </form>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER =================================================
+         <footer> is a semantic element for the bottom of the page
+    ================================================================ -->
+    <footer>
+        <!-- &copy; is an HTML entity that displays the © copyright symbol -->
+        <p>CET138 Assignment &copy; 2025 &mdash; HTML Example</p>
+    </footer>
+
+</body>
+</html>
